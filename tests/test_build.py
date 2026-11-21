@@ -44,7 +44,7 @@ def test_every_theme_builds_with_required_sections(
     for needle in SECTIONS:
         assert needle in html, needle
     assert html.count("<tr data-day=") == 7
-    assert "—" not in html
+    assert chr(0x2014) not in html  # no em dashes in output
 
 
 def test_json_ld_fields(data: dict[str, Any]) -> None:
