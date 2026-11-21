@@ -2,6 +2,8 @@
 
 [![ci](https://github.com/chasebuilds/local-business-site/actions/workflows/ci.yml/badge.svg)](https://github.com/chasebuilds/local-business-site/actions/workflows/ci.yml) [![pages](https://github.com/chasebuilds/local-business-site/actions/workflows/pages.yml/badge.svg)](https://chasebuilds.github.io/local-business-site/) ![Python 3.11+](https://img.shields.io/badge/python-3.11%2B-blue) [![MIT license](https://img.shields.io/badge/license-MIT-green)](LICENSE)
 
+**For local businesses (bakeries, salons, repair shops and the like) that need a simple website that works on phones.** Fill in one file with your hours, services, phone number and reviews, and get a finished page you can put online for free.
+
 **Live demos:** [all three](https://chasebuilds.github.io/local-business-site/) | [bakery (warm)](https://chasebuilds.github.io/local-business-site/bakery/) | [auto repair (bold)](https://chasebuilds.github.io/local-business-site/auto-repair/) | [hair salon (clean)](https://chasebuilds.github.io/local-business-site/hair-salon/)
 
 Turns one YAML file into a fast, mobile-first, one-page website for a small local business: a hero with call, quote and directions buttons, trust badges, reviews, services with prices, a service area, an hours table that highlights today and shows "open now", a map, an FAQ, contact links, a sticky Call and Directions bar on phones and a footer. The output is a single `index.html` with the CSS inlined, so it can go on any static host.
