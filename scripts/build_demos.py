@@ -41,7 +41,8 @@ background:rgba(255,250,245,.6);border:1px solid rgba(255,255,255,.8);
 backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);
 box-shadow:0 18px 40px -20px rgba(90,50,30,.35);transition:transform .2s,box-shadow .2s}}
 a.card:hover{{transform:translateY(-4px);box-shadow:0 26px 50px -20px rgba(90,50,30,.45)}}
-a.card img{{display:block;width:100%;height:auto;aspect-ratio:16/10;object-fit:cover;object-position:top}}
+a.card img{{display:block;width:100%;height:auto;aspect-ratio:16/10;
+object-fit:cover;object-position:top}}
 .meta{{padding:16px 20px 20px}}
 .meta strong{{font-size:1.15rem}}
 .meta span{{display:block;color:#6b5a50;font-size:.95rem;margin-top:2px}}
