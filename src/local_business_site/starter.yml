@@ -33,3 +33,15 @@ links:                     # optional
 color: "#b5523b"           # brand color; text shades are adjusted for contrast
 theme: warm                # warm, clean or bold
 map: true                  # embed a Google map of the address; false shows a link card
+# Optional, all can be left out:
+# url: https://example.com/      # canonical link, robots.txt and sitemap.xml
+# trust: [Family owned, Since 1986]
+# testimonials:                  # 2 to 4 real customer quotes, never invented
+#   - {quote: "Best bread in town.", name: Pat R., source: Google review}
+#   - {quote: "Lovely cakes.", name: Lee M.}
+# service_area: [Example Town, North County]
+# faq:
+#   - {question: Do you take orders?, answer: Yes, call a day ahead.}
+# quote_cta: true                # Request a free quote button (needs email, or sms: true)
+# sms: false
+# credit: true                   # footer link "Site by Chase Builds"

@@ -49,8 +49,10 @@ _PHONE_CHARS = re.compile(r"^[0-9+().\-\s]+$")
 _KNOWN = {
     "name", "tagline", "type", "town", "phone", "email", "address", "hours", "timezone",
     "services", "photos", "links", "color", "theme", "description", "map", "url",
-    "price_range", "credit",
+    "price_range", "credit", "testimonials", "trust", "service_area", "faq", "quote_cta",
+    "sms", "og_image",
 }
+DEFAULT_QUOTE_LABEL = "Request a free quote"
 
 
 class ConfigError(ValueError):
@@ -71,6 +73,19 @@ class Service:
 class Photo:
     src: str
     alt: str
+
+
+@dataclass(frozen=True)
+class Testimonial:
+    quote: str
+    name: str
+    source: str = ""
+
+
+@dataclass(frozen=True)
+class Faq:
+    question: str
+    answer: str
 
 
 @dataclass(frozen=True)
@@ -101,6 +116,13 @@ class Site:
     url: str = ""
     price_range: str = ""
     credit: bool = True
+    testimonials: list[Testimonial] = field(default_factory=list)
+    trust: list[str] = field(default_factory=list)
+    service_area: list[str] = field(default_factory=list)
+    faq: list[Faq] = field(default_factory=list)
+    quote_cta: str = ""
+    sms: bool = False
+    og_image: str = ""
     base_dir: Path = field(default_factory=Path)
 
     @property
@@ -114,7 +136,16 @@ class Site:
 
     @property
     def phone_href(self) -> str:
-        return "tel:" + re.sub(r"[^0-9+]", "", self.phone)
+        return "tel:" + self.sms_number
+
+    @property
+    def sms_number(self) -> str:
+        return re.sub(r"[^0-9+]", "", self.phone)
+
+    @property
+    def place(self) -> str:
+        """Town plus region when given, e.g. "Fernhaven, ST"."""
+        return f"{self.town}, {self.address.region}" if self.address.region else self.town
 
     @property
     def full_address(self) -> str:
@@ -132,6 +163,42 @@ def _text(data: dict[str, Any], key: str, problems: list[str], required: bool = 
         problems.append(f"`{key}` must be text, got {type(value).__name__}")
         return ""
     return str(value).strip()
+
+
+def _text_list(data: dict[str, Any], key: str, problems: list[str]) -> list[str]:
+    raw = data.get(key) or []
+    if not isinstance(raw, list):
+        problems.append(f"`{key}` must be a list")
+        return []
+    out = []
+    for i, item in enumerate(raw):
+        if isinstance(item, (str, int)) and not isinstance(item, bool) and str(item).strip():
+            out.append(str(item).strip())
+        else:
+            problems.append(f"`{key}[{i}]` must be a short piece of text")
+    return out
+
+
+def _records(
+    data: dict[str, Any], key: str, fields: tuple[str, ...], problems: list[str]
+) -> list[dict[str, str]]:
+    """A list of mappings whose ``fields`` are all required text."""
+    raw = data.get(key) or []
+    if not isinstance(raw, list):
+        problems.append(f"`{key}` must be a list")
+        return []
+    out = []
+    for i, item in enumerate(raw):
+        if not isinstance(item, dict):
+            problems.append(f"`{key}[{i}]` needs {' and '.join(fields)}")
+            continue
+        rec = {k: str(v).strip() for k, v in item.items() if v is not None}
+        missing = [f for f in fields if not rec.get(f)]
+        if missing:
+            problems.append(f"`{key}[{i}]` needs {' and '.join(missing)}")
+            continue
+        out.append(rec)
+    return out
 
 
 def parse(data: object, source: str = "site.yml", base_dir: Path | None = None) -> Site:
@@ -248,6 +315,39 @@ def parse(data: object, source: str = "site.yml", base_dir: Path | None = None) 
     if url and not url.startswith("https://"):
         problems.append("`url` must start with https://")
 
+    testimonials = [
+        Testimonial(r["quote"], r["name"], r.get("source", ""))
+        for r in _records(data, "testimonials", ("quote", "name"), problems)
+    ]
+    if testimonials and not 2 <= len(testimonials) <= 4:
+        problems.append(f"`testimonials` needs 2 to 4 or none, got {len(testimonials)}")
+    faq = [
+        Faq(r["question"], r["answer"])
+        for r in _records(data, "faq", ("question", "answer"), problems)
+    ]
+
+    sms = data.get("sms", False)
+    if not isinstance(sms, bool):
+        problems.append("`sms` must be true or false")
+        sms = False
+    raw_quote = data.get("quote_cta", False)
+    quote_cta = ""
+    if raw_quote is True:
+        quote_cta = DEFAULT_QUOTE_LABEL
+    elif isinstance(raw_quote, str) and raw_quote.strip():
+        quote_cta = raw_quote.strip()
+    elif raw_quote not in (False, None, ""):
+        problems.append("`quote_cta` must be true, false or a button label")
+    if quote_cta and not email and not sms:
+        problems.append("`quote_cta` needs `email` or `sms: true` to know where the request goes")
+
+    og_image = _text(data, "og_image", problems)
+    if og_image and not og_image.startswith("https://"):
+        problems.append("`og_image` must be an https:// URL")
+
+    trust = _text_list(data, "trust", problems)
+    service_area = _text_list(data, "service_area", problems)
+
     if problems:
         raise ConfigError(source, problems)
     return Site(
@@ -270,6 +370,13 @@ def parse(data: object, source: str = "site.yml", base_dir: Path | None = None) 
         url=url,
         price_range=_text(data, "price_range", problems),
         credit=bool(data.get("credit", True)),
+        testimonials=testimonials,
+        trust=trust,
+        service_area=service_area,
+        faq=faq,
+        quote_cta=quote_cta,
+        sms=sms,
+        og_image=og_image,
         base_dir=base_dir or Path("."),
     )
 

@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "local-business-site"
-version = "0.1.0"
+version = "0.2.0"
 description = "One YAML file to a fast, mobile-first one-page website for a local business."
 readme = "README.md"
 requires-python = ">=3.11"

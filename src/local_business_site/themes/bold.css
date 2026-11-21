@@ -29,3 +29,4 @@ html{color-scheme:dark}
 .status{border-radius:4px}
 .contact{background:linear-gradient(120deg,var(--tint-dark),var(--surface) 60%);border-color:var(--line-strong)}
 .footer{color:var(--muted)}
+.trust li,.area-list li{border-radius:4px}

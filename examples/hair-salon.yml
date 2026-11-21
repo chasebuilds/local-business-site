@@ -41,3 +41,23 @@ links:
 color: "#2f7d6d"
 theme: clean
 map: false
+url: https://chasebuilds.github.io/local-business-site/hair-salon/
+quote_cta: Ask about color pricing   # opens a prefilled email to the address above
+trust:
+  - Licensed stylists
+  - Locally owned
+  - Vegan color line
+testimonials:   # demo only: fictional reviews. Real sites must use real customer words.
+  - quote: My balayage grew out beautifully. Three months and it still looks intentional.
+    name: Demo customer F.
+    source: Fictional review
+  - quote: Calm, unhurried and they actually listen. My kids like it too.
+    name: Demo customer G.
+    source: Fictional review
+faq:
+  - question: Do you take walk-ins?
+    answer: When a chair is free. Call ahead and we will tell you the wait.
+  - question: How long does balayage take?
+    answer: Plan on three to four hours, including the consultation and toner.
+  - question: What is your cancellation policy?
+    answer: Please give us 24 hours notice so we can offer the time to someone else.

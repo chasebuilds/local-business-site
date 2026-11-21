@@ -38,3 +38,29 @@ links:
 color: "#f5a524"
 theme: bold
 map: false
+url: https://chasebuilds.github.io/local-business-site/auto-repair/
+sms: true             # the quote button opens a prefilled text message to the shop phone
+quote_cta: true       # shows "Request a free quote"
+trust:
+  - Licensed and insured
+  - 12-month parts and labor warranty
+  - Family owned since 1998
+testimonials:   # demo only: fictional reviews. Real sites must use real customer words.
+  - quote: They showed me the worn pads before replacing anything. Fair price, done same day.
+    name: Demo customer D.
+    source: Fictional review
+  - quote: Check engine light diagnosed in twenty minutes and the fee went toward the fix.
+    name: Demo customer E.
+    source: Fictional review
+service_area:   # fictional towns
+  - Larkmoor
+  - East Larkmoor
+  - Penwick
+  - Granite County
+faq:
+  - question: Do I need an appointment?
+    answer: Appointments get priority, but we take walk-ins for oil changes and inspections before 3 PM.
+  - question: Do you work on hybrids?
+    answer: Yes, for brakes, tires, AC and routine service. Battery pack work goes to the dealer.
+  - question: Will you call before doing extra work?
+    answer: Always. Nothing beyond the quote gets done without your OK.

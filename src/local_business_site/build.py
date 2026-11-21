@@ -5,10 +5,11 @@ from __future__ import annotations
 import json
 import shutil
 from datetime import date
+from html import escape
 from importlib import resources
 from pathlib import Path
 from typing import Any
-from urllib.parse import quote_plus
+from urllib.parse import quote, quote_plus
 
 from jinja2 import Environment, PackageLoader, select_autoescape
 
@@ -128,6 +129,8 @@ def json_ld(site: Site) -> dict[str, Any]:
         data["sameAs"] = list(site.links.values())
     if site.photos:
         data["image"] = [p.src for p in site.photos]
+    if site.service_area:
+        data["areaServed"] = [{"@type": "Place", "name": a} for a in site.service_area]
     if site.services:
         data["hasOfferCatalog"] = {
             "@type": "OfferCatalog",
@@ -142,6 +145,60 @@ def json_ld(site: Site) -> dict[str, Any]:
             ],
         }
     return data
+
+
+def faq_ld(site: Site) -> dict[str, Any] | None:
+    if not site.faq:
+        return None
+    return {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": [
+            {
+                "@type": "Question",
+                "name": f.question,
+                "acceptedAnswer": {"@type": "Answer", "text": f.answer},
+            }
+            for f in site.faq
+        ],
+    }
+
+
+def quote_href(site: Site) -> str:
+    """A prefilled text message (``sms: true``) or email asking for a quote. No backend."""
+    if not site.quote_cta:
+        return ""
+    body = f"Hi {site.name}, I'd like a free quote. What I need: "
+    if site.sms:
+        return f"sms:{site.sms_number}?&body={quote(body)}"
+    subject = f"Quote request for {site.name}"
+    return f"mailto:{site.email}?subject={quote(subject)}&body={quote(body)}"
+
+
+def og_image(site: Site, photos: list[dict[str, str]]) -> str:
+    """Share image: ``og_image``, else the first photo as an absolute URL when one can be made."""
+    if site.og_image:
+        return site.og_image
+    if not photos:
+        return ""
+    src = photos[0]["src"]
+    if src.startswith(("https://", "http://")):
+        return src
+    return site.url.rstrip("/") + "/" + src if site.url else ""
+
+
+def robots_txt(site: Site) -> str:
+    return f"User-agent: *\nAllow: /\n\nSitemap: {site.url.rstrip('/')}/sitemap.xml\n"
+
+
+def sitemap_xml(site: Site) -> str:
+    loc = site.url if site.url.endswith("/") else site.url + "/"
+    return (
+        '<?xml version="1.0" encoding="UTF-8"?>\n'
+        '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'
+        f"  <url><loc>{escape(loc)}</loc><lastmod>{date.today().isoformat()}</lastmod></url>\n"
+        "</urlset>\n"
+    )
 
 
 def _hours_script_data(site: Site) -> str:
@@ -195,9 +252,9 @@ def render(site: Site, theme: str | None = None, photos: list[dict[str, str]] | 
     if photos is None:
         photos = [{"src": p.src, "alt": p.alt} for p in site.photos]
     description = site.description or (
-        f"{site.name}: {site.tagline} {site.type.capitalize()} in {site.town}."
+        f"{site.name}: {site.tagline} {site.type.capitalize()} in {site.place}."
         if site.tagline
-        else f"{site.name}, {site.type} in {site.town}. Hours, services and directions."
+        else f"{site.name}, {site.type} in {site.place}. Hours, services and directions."
     )
     return _env().get_template("site.html.j2").render(
         site=site,
@@ -213,6 +270,9 @@ def render(site: Site, theme: str | None = None, photos: list[dict[str, str]] | 
         ],
         hours_json=_hours_script_data(site),
         json_ld=_script_json(json_ld(site)),
+        faq_json=_script_json(faq) if (faq := faq_ld(site)) else "",
+        quote_href=quote_href(site),
+        og_image=og_image(site, photos),
         directions=f"https://www.google.com/maps/search/?api=1&query={query}",
         map_embed=f"https://www.google.com/maps?q={query}&output=embed",
         year=date.today().year,
@@ -224,4 +284,7 @@ def build(site: Site, out_dir: Path, theme: str | None = None) -> Path:
     html = render(site, theme, _photos(site, out_dir))
     index = out_dir / "index.html"
     index.write_text(html, encoding="utf-8")
+    if site.url:
+        (out_dir / "robots.txt").write_text(robots_txt(site), encoding="utf-8")
+        (out_dir / "sitemap.xml").write_text(sitemap_xml(site), encoding="utf-8")
     return index

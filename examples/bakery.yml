@@ -41,3 +41,30 @@ color: "#c2622d"
 theme: warm
 map: false
 credit: true
+url: https://chasebuilds.github.io/local-business-site/bakery/
+quote_cta: Ask about a celebration cake   # opens a prefilled email to the address above
+trust:
+  - Family owned
+  - Baking since 1986
+  - Local flour and butter
+testimonials:   # demo only: fictional reviews. Real sites must use real customer words.
+  - quote: The sourdough is worth the early alarm. Gone by ten most Saturdays.
+    name: Demo customer A.
+    source: Fictional review
+  - quote: They made our daughter's birthday cake on short notice and it was perfect.
+    name: Demo customer B.
+    source: Fictional review
+  - quote: Best croissant I have had outside of a city bakery.
+    name: Demo customer C.
+    source: Fictional review
+service_area:   # wholesale delivery towns (fictional)
+  - Fernhaven
+  - Mill Creek
+  - Ashby Falls
+faq:
+  - question: How far ahead should I order a cake?
+    answer: Three days for most cakes, one week for tiered or wedding cakes.
+  - question: Do you have gluten-free options?
+    answer: We bake a gluten-free loaf on Fridays. Our kitchen uses wheat, so we cannot promise zero traces.
+  - question: Can I reserve bread for pickup?
+    answer: Yes. Call the day before and we will hold it until noon.
