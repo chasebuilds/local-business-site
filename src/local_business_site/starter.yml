@@ -1,0 +1,35 @@
+# Starter site file. Edit the values, then run:
+#   sitegen build site.yml -o out/ --theme warm
+name: Maple Street Bakery
+tagline: Fresh bread, pastries and coffee, baked every morning.
+type: bakery            # bakery, cafe, auto repair, hair salon, florist, ...
+town: Example Town
+phone: (555) 010-1234
+email: hello@example.com   # optional
+address:
+  street: 100 Main Street
+  region: ST
+  postal_code: "00000"
+timezone: America/New_York # optional; the "open now" badge uses it
+hours:                     # 9:00-17:00, 8am-2pm, two ranges "8:00-12:00, 13:00-17:00", or closed
+  mon: closed
+  tue: 7:00-15:00
+  wed: 7:00-15:00
+  thu: 7:00-15:00
+  fri: 7:00-17:00
+  sat: 8:00-14:00
+  sun: closed
+services:                  # plain names, or name / price / description
+  - name: Sourdough loaf
+    price: 8
+    description: Naturally leavened, baked fresh each morning.
+  - name: Croissants
+    price: "$3.50"
+  - Custom cakes
+photos: []                 # none, or 3 to 6: file paths next to this file, or https URLs
+links:                     # optional
+  facebook: https://facebook.com/example
+  google: https://g.page/example
+color: "#b5523b"           # brand color; text shades are adjusted for contrast
+theme: warm                # warm, clean or bold
+map: true                  # embed a Google map of the address; false shows a link card

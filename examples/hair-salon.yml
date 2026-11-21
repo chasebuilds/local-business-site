@@ -1,0 +1,43 @@
+# Invented business for the demo. Name, town, address and phone are fictional.
+name: Studio Juniper
+tagline: Cuts, color and styling in a calm, light-filled studio. Walk-ins when the chair is free.
+type: hair salon
+town: Hollis Ridge
+phone: (555) 012-8836
+email: book@example.com
+address:
+  street: 31 Linden Court, Suite 2
+timezone: America/Denver
+hours:
+  mon: closed
+  tue: 10:00-19:00
+  wed: 10:00-19:00
+  thu: 10:00-20:00
+  fri: 9:00-18:00
+  sat: 9:00-16:00
+  sun: closed
+services:
+  - name: Women's cut and style
+    price: $58
+    description: Consultation, wash, precision cut and blowout.
+  - name: Men's cut
+    price: $32
+    description: Clipper or scissor cut with a hot towel finish.
+  - name: Single-process color
+    price: from $85
+    description: Root touch-up or all-over color with gloss.
+  - name: Balayage and highlights
+    price: from $160
+    description: Hand-painted, low-maintenance blends. Consultation included.
+  - name: Kids' cut
+    price: $22
+    description: Ages 12 and under.
+  - name: Blowout
+    price: $40
+    description: Wash and a smooth, lasting finish for any occasion.
+links:
+  instagram: https://instagram.com/example
+  facebook: https://facebook.com/example
+color: "#2f7d6d"
+theme: clean
+map: false

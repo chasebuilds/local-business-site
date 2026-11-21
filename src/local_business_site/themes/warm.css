@@ -1,0 +1,25 @@
+/* warm: painted backdrop, frosted glass panels, pill nav, serif display */
+:root{--font-display:"Fraunces",Georgia,serif;--font-body:"Nunito Sans",system-ui,sans-serif;
+--bg:#f6ece2;--text:#3b2f2a;--heading:#2a1f1a;--muted:#6b5a50;--ink:var(--ink-light);--link:var(--ink-light);
+--surface:rgba(255,250,245,.58);--surface-solid:#fffaf5;--line:rgba(255,255,255,.75);--line-strong:rgba(90,60,40,.22);
+--hover:rgba(255,255,255,.6);--ghost-bg:rgba(255,255,255,.5);--focus:var(--ink-light);
+--radius:24px;--bar-radius:999px;--btn-radius:999px;--mark-radius:50%;
+--shadow:0 1px 0 rgba(255,255,255,.8) inset,0 18px 40px -18px rgba(90,50,30,.28);
+--shadow-hover:0 1px 0 rgba(255,255,255,.8) inset,0 26px 50px -20px rgba(90,50,30,.38);
+--btn-shadow:0 10px 24px -10px var(--btn);
+--today-bg:rgba(255,255,255,.85);--today-text:var(--heading);
+--map-bg:#efe2d3;--map-line:rgba(255,255,255,.7);--map-road:rgba(255,255,255,.95);
+--h1-track:-.02em;--h2-track:-.01em}
+.backdrop{background:
+ radial-gradient(60% 50% at 8% 6%,color-mix(in srgb,var(--brand) 38%,transparent),transparent 70%),
+ radial-gradient(45% 45% at 92% 18%,rgba(255,196,140,.75),transparent 70%),
+ radial-gradient(55% 50% at 78% 92%,rgba(244,163,150,.55),transparent 70%),
+ radial-gradient(50% 45% at 12% 88%,rgba(255,224,170,.7),transparent 70%),
+ linear-gradient(160deg,#fbefe3,#f3e3d6 55%,#f7e9dc)}
+.panel{backdrop-filter:blur(18px) saturate(140%);-webkit-backdrop-filter:blur(18px) saturate(140%)}
+.hero h1{font-weight:700}
+.hero h1,.section h2{font-variation-settings:"SOFT" 100}
+.eyebrow{font-family:var(--font-body)}
+.status{backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px)}
+.hours th,.hours td{border-bottom-color:rgba(90,60,40,.1)}
+.footer{color:var(--muted)}

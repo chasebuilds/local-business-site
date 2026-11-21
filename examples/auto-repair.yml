@@ -1,0 +1,40 @@
+# Invented business for the demo. Name, town, address and phone are fictional.
+name: Ironline Auto Repair
+tagline: Honest diagnostics, fair prices and same-day fixes for most cars and light trucks.
+type: auto repair
+town: Larkmoor
+phone: (555) 019-4471
+address:
+  street: 88 Foundry Road
+timezone: America/Chicago
+hours:
+  mon: 7:30-17:30
+  tue: 7:30-17:30
+  wed: 7:30-17:30
+  thu: 7:30-17:30
+  fri: 7:30-17:30
+  sat: 8:00-12:00
+  sun: closed
+services:
+  - name: Oil and filter change
+    price: from $49
+    description: Conventional or synthetic, with a free 20-point inspection.
+  - name: Brakes
+    price: from $139
+    description: Pads, rotors and fluid. We show you the worn parts.
+  - name: Check engine light
+    price: $89
+    description: Full scan and diagnosis, credited toward the repair.
+  - name: Tires and alignment
+    description: Mount, balance, rotate and four-wheel alignment.
+  - name: AC and heating
+    description: Recharge, leak test and compressor work.
+  - name: State inspection
+    price: $35
+    description: Walk-ins welcome before 3 PM.
+links:
+  google: https://g.page/example
+  facebook: https://facebook.com/example
+color: "#f5a524"
+theme: bold
+map: false

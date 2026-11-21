@@ -1,0 +1,43 @@
+# Invented business for the demo. Name, town, address and phone are fictional.
+name: Hearth & Honey Bakery
+tagline: Slow-fermented bread, flaky pastries and good coffee, baked before sunrise.
+type: bakery
+town: Fernhaven
+phone: (555) 014-2290
+email: hello@example.com
+address:
+  street: 214 Orchard Lane
+timezone: America/New_York
+hours:
+  mon: closed
+  tue: 7:00-15:00
+  wed: 7:00-15:00
+  thu: 7:00-15:00
+  fri: 7:00-18:00
+  sat: 7:30-14:00
+  sun: 8:00-12:00
+services:
+  - name: Country sourdough
+    price: 9
+    description: Two-day ferment, crackly crust, open crumb. Sliced on request.
+  - name: Butter croissants
+    price: "$3.75"
+    description: Laminated by hand with cultured butter, out of the oven by 7.
+  - name: Seasonal fruit galette
+    price: 6
+    description: Whatever the orchard has this week, in a rustic all-butter crust.
+  - name: Celebration cakes
+    price: from $45
+    description: Layer cakes for birthdays and small weddings. Order 3 days ahead.
+  - name: Coffee and espresso
+    price: from $3
+    description: Locally roasted beans, oat and whole milk.
+  - name: Wholesale bread
+    description: Daily delivery for cafes and restaurants in town.
+links:
+  facebook: https://facebook.com/example
+  google: https://g.page/example
+color: "#c2622d"
+theme: warm
+map: false
+credit: true

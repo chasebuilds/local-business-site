@@ -1,0 +1,31 @@
+/* bold: dark, high contrast, heavy uppercase display, brand as a bright accent */
+:root{--font-display:"Archivo Black","Arial Black",system-ui,sans-serif;--font-body:"Archivo",system-ui,sans-serif;
+--bg:#0c0c0e;--text:#cfcfd6;--heading:#ffffff;--muted:#a3a3ad;--ink:var(--ink-dark);--link:var(--ink-dark);
+--surface:#151518;--surface-solid:#1c1c20;--line:#26262c;--line-strong:#3c3c44;
+--hover:#1c1c20;--ghost-bg:transparent;--focus:var(--ink-dark);
+--radius:6px;--bar-radius:6px;--btn-radius:4px;--mark-radius:4px;
+--shadow:none;--shadow-hover:0 0 0 1px var(--brand);--btn-shadow:0 0 0 0 transparent;
+--today-bg:var(--tint-dark);--today-text:#ffffff;
+--map-bg:#141417;--map-line:#1f1f24;--map-road:#2a2a31;
+--h1-track:-.01em;--h2-track:0}
+html{color-scheme:dark}
+.backdrop{background:
+ radial-gradient(50% 40% at 85% 0%,color-mix(in srgb,var(--brand) 28%,transparent),transparent 70%),
+ repeating-linear-gradient(135deg,rgba(255,255,255,.018) 0 2px,transparent 2px 14px),#0c0c0e}
+.bar{background:rgba(12,12,14,.82);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px)}
+.logo{text-transform:uppercase;letter-spacing:.02em;font-size:.98rem}
+.bar nav a{text-transform:uppercase;font-size:.82rem;letter-spacing:.08em}
+.btn{text-transform:uppercase;letter-spacing:.06em;font-size:.9rem}
+.btn.primary:hover{box-shadow:6px 6px 0 0 color-mix(in srgb,var(--brand) 45%,transparent);transform:translate(-2px,-2px)}
+.hero h1{text-transform:uppercase;font-size:clamp(2.7rem,7vw,5.4rem);line-height:.95}
+.hero h1::after{content:"";display:block;width:84px;height:8px;margin-top:22px;background:var(--brand)}
+.section h2,.split h2{text-transform:uppercase}
+.hero-card{border-left:6px solid var(--brand)}
+.service{border-left:4px solid var(--line-strong)}
+.service:hover{border-left-color:var(--brand)}
+.service h3{font-family:var(--font-body);font-weight:600;font-size:1.25rem}
+.price{color:var(--ink-dark)}
+.hours tr.today th::after{border-radius:3px}
+.status{border-radius:4px}
+.contact{background:linear-gradient(120deg,var(--tint-dark),var(--surface) 60%);border-color:var(--line-strong)}
+.footer{color:var(--muted)}
