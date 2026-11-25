@@ -157,3 +157,11 @@ The `pages` workflow runs `scripts/build_demos.py` on every push to `main` and d
 ## License
 
 MIT. Made by Chase Builds.
+
+## More from Chase Builds
+
+- **[field-service-pwa](https://github.com/chasebuilds/field-service-pwa)**: Phone app for crews: job tickets, photos, parts, time, customer signature and invoice. Works with no signal. ([live demo](https://chasebuilds.github.io/field-service-pwa/))
+- **[appointment-booking-api](https://github.com/chasebuilds/appointment-booking-api)**: Online booking that never double-books and gets time zones right. ([live demo](https://chasebuilds.github.io/appointment-booking-api/))
+- **[sheets-automations](https://github.com/chasebuilds/sheets-automations)**: Google Sheets that send summaries, invoices, overdue reminders and low-stock alerts on their own. ([live demo](https://chasebuilds.github.io/sheets-automations/))
+
+[All projects, sorted by industry](https://github.com/chasebuilds) · [chasebuilds.github.io](https://chasebuilds.github.io)
